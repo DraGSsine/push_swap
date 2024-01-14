@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 18:06:39 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/11 17:05:18 by youchen          ###   ########.fr       */
+/*   Created: 2024/01/13 11:44:46 by youchen           #+#    #+#             */
+/*   Updated: 2024/01/13 11:59:32 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	insert_pos(t_list *stack, t_list *rtn)
+void	ft_lstcat(t_list **first_list, t_list **second_list)
 {
-	while (stack && rtn)
-	{
-		if (rtn->number > stack->number)
-			(rtn->position)++;
-		else
-			stack->position++;
-		stack = stack->next;
-	}
-}
+	t_list	*current;
 
-t_list	*ft_lstnew(int content, t_list *stack)
-{
-	t_list	*rtn;
-
-	rtn = malloc(sizeof(t_list));
-	if (!rtn)
-		return (NULL);
-	rtn->number = content;
-	rtn->position = 0;
-	rtn->next = NULL;
-	insert_pos(stack, rtn);
-	return (rtn);
+	current = *second_list;
+	while (current->next)
+		current = current->next;
+	current->next = *first_list;
+	*first_list = *second_list;
 }

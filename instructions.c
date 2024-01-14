@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 15:21:09 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/01 12:34:05 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/14 17:23:17 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 void swap_a(t_list **stack)
 {
 	if (!stack || !*stack || !(*stack)->next)
-		return;
-
+		return ;
 	t_list *temp1 = *stack;
 	t_list *temp2 = (*stack)->next;
 	temp1->next = temp2->next;
@@ -24,23 +23,25 @@ void swap_a(t_list **stack)
 
 	*stack = temp2;
 }
-void push_b(t_list *stack_a, t_list **stack_b)
+
+void	push_b(t_list **stack_a, t_list **stack_b)
 {
-	t_list *temp = NULL;
-	if (!stack_a)
-		return;
-	if (!stack_b || !*stack_b)
-		return;
-	temp = stack_a;
-	temp->next = NULL;
-	ft_lstadd_front(stack_b, temp);
+	t_list *temp;
+
+	if (!stack_a || !*stack_a || !stack_b)
+		return ;
+
+	temp = *stack_a;
+	*stack_a = (*stack_a)->next;
+
+	temp->next = *stack_b;
+	*stack_b = temp;
 }
 
 void rotate_a(t_list **stack)
 {
 	if (!stack || !*stack || !(*stack)->next)
-		return;
-
+		return ;
 	t_list *temp = *stack;
 	*stack = (*stack)->next;
 	temp->next = NULL;
