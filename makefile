@@ -4,7 +4,7 @@ OBJS = ft_lstcat.o push_swap_util.o ft_lstsize.o ft_lstadd_back.o ft_lstnew.o pu
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-CC = gcc -g -fsanitize=address
+CC = cc
 
 all: $(NAME)
 

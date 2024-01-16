@@ -6,13 +6,13 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 22:23:48 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/13 21:36:10 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/15 21:44:15 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	remove_node(t_list **head_ref, size_t key)
+void remove_node(t_list **head_ref, size_t key)
 {
 	t_list *temp = *head_ref;
 	t_list *prev = NULL;
@@ -21,7 +21,7 @@ void	remove_node(t_list **head_ref, size_t key)
 	{
 		*head_ref = temp->next;
 		free(temp);
-		return ;
+		return;
 	}
 
 	while (temp->position != key)
@@ -50,20 +50,20 @@ void stort_three_numbers(t_list **stack)
 {
 	if ((*stack)->number > (*stack)->next->number)
 	{
-		swap_a(stack);
+		swap_stack(stack, "sa");
 		if (sorted(*stack))
 			return;
 	}
 	if ((*stack)->next->number > (*stack)->next->next->number)
 	{
-		reverse_rotate_a(stack);
+		reverse_rotate_stack(stack, "rra");
 		if (sorted(*stack))
-			return ;
+			return;
 	}
-	swap_a(stack);
+	swap_stack(stack, "sa");
 }
 
-void	sort_four_numbers(t_list **stack_a, t_list **stack_b)
+void sort_four_numbers(t_list **stack_a, t_list **stack_b)
 {
 	t_list *current = *stack_a;
 
@@ -73,7 +73,7 @@ void	sort_four_numbers(t_list **stack_a, t_list **stack_b)
 		{
 			ft_lstadd_back(stack_b, ft_lstnew(current->number, *stack_b));
 			remove_node(stack_a, current->position);
-			break ;
+			break;
 		}
 		current = current->next;
 	}
@@ -81,7 +81,7 @@ void	sort_four_numbers(t_list **stack_a, t_list **stack_b)
 	ft_lstadd_front(stack_a, *stack_b);
 }
 
-void	sort_five_numbers(t_list **stack_a, t_list **stack_b)
+void sort_five_numbers(t_list **stack_a, t_list **stack_b)
 {
 	t_list *current = *stack_a;
 
@@ -91,7 +91,7 @@ void	sort_five_numbers(t_list **stack_a, t_list **stack_b)
 		{
 			ft_lstadd_back(stack_b, ft_lstnew(current->number, *stack_b));
 			remove_node(stack_a, current->position);
-			break ;
+			break;
 		}
 		current = current->next;
 	}
@@ -102,7 +102,7 @@ void	sort_five_numbers(t_list **stack_a, t_list **stack_b)
 		{
 			ft_lstadd_back(stack_b, ft_lstnew(current->number, *stack_b));
 			remove_node(stack_a, current->position);
-			break ;
+			break;
 		}
 		current = current->next;
 	}
