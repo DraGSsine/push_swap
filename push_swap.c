@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:10:54 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/17 11:33:15 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/17 21:45:56 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void print_list(t_list *stack)
 	}
 }
 
-void	take_node_to_toop (t_list **stack_b, t_node_found_at node)
+void	take_node_to_toop(t_list **stack_b, t_node_found_at node)
 {
 	while ((*stack_b)->position != node.location->position)
 	{
@@ -51,6 +51,7 @@ void	take_node_to_toop (t_list **stack_b, t_node_found_at node)
 			reverse_rotate_stack(stack_b, "rrb");
 	}
 }
+
 t_node_found_at	node_at(t_list **stack, size_t position_to_found)
 {
 	t_list			*current;
@@ -68,7 +69,23 @@ t_node_found_at	node_at(t_list **stack, size_t position_to_found)
 	node.location = current;
 	return (node);
 }
+int check(size_t second_large, size_t large, size_t size_of_list)
+{
+	size_t number_of_instraction_1;
+	size_t number_of_instraction_2;
 
+	if (second_large <= (size_of_list / 2))
+		number_of_instraction_2 = second_large + 1;
+	else
+		number_of_instraction_2 = size_of_list - second_large + 2;
+	if (large <= (size_of_list / 2))
+		number_of_instraction_1 = large + 1;
+	else
+		number_of_instraction_1 = size_of_list - large + 2;
+	if (number_of_instraction_1 >= number_of_instraction_2)
+		return (1);
+	return (0);
+}
 void	push_back_to_a(t_list **stack_a, t_list **stack_b)
 {
 	size_t			large_number;
@@ -80,12 +97,13 @@ void	push_back_to_a(t_list **stack_a, t_list **stack_b)
 		large_number = ft_lstsize(*stack_b) - 1;
 		large_node = node_at(stack_b, large_number);
 		second_large_node = node_at(stack_b, large_number - 1);
-		if (second_large_node.iter < large_node.iter)
+		if (check(second_large_node.iter, large_node.iter, ft_lstsize(*stack_b)))
 		{
 			take_node_to_toop(stack_b, second_large_node);
 			push_stack(stack_b, stack_a, "pa");
 			take_node_to_toop(stack_b, large_node);
 			push_stack(stack_b, stack_a, "pa");
+			swap_stack(stack_a, "sa");
 		}
 		else
 		{
@@ -99,8 +117,8 @@ void sort_large_numbers(t_list **stack_a, t_list **stack_b)
 	size_t chunk;
 	size_t chunks_step;
 
-	chunk = ft_lstsize(*stack_a) / 10;
-	chunks_step = ft_lstsize(*stack_a) / 10;
+	chunk = ft_lstsize(*stack_a) / 5;
+	chunks_step = ft_lstsize(*stack_a) / 5;
 	while ((*stack_a))
 	{
 		while ((*stack_a)->position >= chunk)
@@ -149,8 +167,10 @@ int main(int argc, char **argv)
 	// print_list(stack_b);
 
 	push_back_to_a(&stack_a, &stack_b);
-	// printf("--------Stack B--------\n");
-	// print_list(stack_b);
+	printf("--------Stack A--------\n");
+	print_list(stack_a);
+	printf("--------Stack B--------\n");
+	print_list(stack_b);
 	free_list(stack_a);
 	free_list(stack_b);
 	return (0);
