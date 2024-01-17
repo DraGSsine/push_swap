@@ -6,15 +6,21 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:10:54 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/16 13:42:02 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/17 11:33:15 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+typedef	struct	s_node_found_at
+{
+	size_t	iter;
+	t_list	*location;
+}	t_node_found_at;
+
 void	free_list(t_list *list)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	while (list)
 	{
@@ -35,77 +41,82 @@ void print_list(t_list *stack)
 	}
 }
 
-void push_back_to_a(t_list **stack_a, t_list **stack_b)
+void	take_node_to_toop (t_list **stack_b, t_node_found_at node)
 {
-	size_t size_of_b;
-	size_t largest_number;
-	size_t second_largest_number;
-	t_list *current;
-	size_t i;
+	while ((*stack_b)->position != node.location->position)
+	{
+		if (node.iter <= (size_t)(ft_lstsize(*stack_b) / 2))
+			rotate_stack(stack_b, "rb");
+		else
+			reverse_rotate_stack(stack_b, "rrb");
+	}
+}
+t_node_found_at	node_at(t_list **stack, size_t position_to_found)
+{
+	t_list			*current;
+	size_t			i;
+	t_node_found_at	node;
 
 	i = 0;
-	size_of_b = ft_lstsize(*stack_b);
-	largest_number = size_of_b - 1;
-	second_largest_number = size_of_b - 2;
-	current = *stack_b;
-
-	while (current)
+	current = *stack;
+	while (current && (current->position != position_to_found))
 	{
-		if (current->position == largest_number)
-		{
-			while ((*stack_b) && (*stack_b)->position != largest_number)
-			{
-				if (i < (size_of_b / 2))
-					rotate_stack(stack_b, "rb");
-				else
-					reverse_rotate_stack(stack_b, "rrb");
-			}
-			push_stack(stack_b, stack_a, "sa");
-		}
 		i++;
 		current = current->next;
 	}
+	node.iter = i;
+	node.location = current;
+	return (node);
 }
 
-void ¸sort_large_numbers(t_list **stack_a, t_list **stack_b)
+void	push_back_to_a(t_list **stack_a, t_list **stack_b)
 {
-	size_t list_size;
-	size_t chunks_step;
-	size_t half_chunk;
-	t_list *current;
-	size_t i;
-	size_t chunk;
+	size_t			large_number;
+	t_node_found_at	large_node;
+	t_node_found_at	second_large_node;
 
-	list_size = ft_lstsize(*stack_a);
-	current = *stack_a;
-	chunk = list_size / 5;
-	chunks_step = list_size / 5;
-	if (list_size > 5 && list_size <= 100)
+	while (*stack_b)
 	{
-		while (*stack_a)
+		large_number = ft_lstsize(*stack_b) - 1;
+		large_node = node_at(stack_b, large_number);
+		second_large_node = node_at(stack_b, large_number - 1);
+		if (second_large_node.iter < large_node.iter)
 		{
-			list_size = ft_lstsize(*stack_a);
-			half_chunk = chunks_step / 2;
-			i = 0;
-			while (*stack_a && i < list_size)
-			{
-				if ((*stack_a)->position >= chunks_step)
-					rotate_stack(stack_a, "ra");
-				else
-				{
-					push_stack(stack_a, stack_b, "pb");
-					if ((*stack_b)->position >= half_chunk)
-						rotate_stack(stack_b, "rb");
-				}
-				i++;
-			}
-			chunks_step += chunk;
+			take_node_to_toop(stack_b, second_large_node);
+			push_stack(stack_b, stack_a, "pa");
+			take_node_to_toop(stack_b, large_node);
+			push_stack(stack_b, stack_a, "pa");
+		}
+		else
+		{
+			take_node_to_toop(stack_b, large_node);
+			push_stack(stack_b, stack_a, "pa");
 		}
 	}
 }
+void sort_large_numbers(t_list **stack_a, t_list **stack_b)
+{
+	size_t chunk;
+	size_t chunks_step;
 
-void checkLeaks() {
-    system("leaks push_swap");
+	chunk = ft_lstsize(*stack_a) / 10;
+	chunks_step = ft_lstsize(*stack_a) / 10;
+	while ((*stack_a))
+	{
+		while ((*stack_a)->position >= chunk)
+			rotate_stack(stack_a, "ra");
+		while ((*stack_a) && (*stack_a)->position < chunk)
+		{
+			if ((*stack_a)->position < chunk - (chunks_step / 2))
+				push_stack(stack_a, stack_b, "pb");
+			else
+			{
+				push_stack(stack_a, stack_b, "pb");
+				rotate_stack(stack_b, "rb");
+			}
+		}
+		chunk += chunks_step;
+	}
 }
 
 int main(int argc, char **argv)
@@ -115,16 +126,15 @@ int main(int argc, char **argv)
 	t_list *stack_a = NULL;
 	t_list *stack_b = NULL;
 
-    atexit(checkLeaks);
 	i = 1;
 	(void)argc;
 	while (argv[i])
 		ft_lstadd_back(&stack_a, ft_lstnew(atoi(argv[i++]), stack_a));
 	list_size = ft_lstsize(stack_a);
+	// printf("--------Stack A--------\n");
+	// print_list(stack_a);
 	if (sorted(stack_a))
 		return (1);
-	printf("--------Stack A Beffore--------\n");
-	print_list(stack_a);
 	if (list_size == 2)
 		swap_stack(&stack_a, "sa");
 	else if (list_size == 3)
@@ -135,12 +145,10 @@ int main(int argc, char **argv)
 		sort_five_numbers(&stack_a, &stack_b);
 	else
 		sort_large_numbers(&stack_a, &stack_b);
-	printf("--------Stack B Beffore--------\n");
-	print_list(stack_b);
-	while (stack_b)
-		push_back_to_a(&stack_a, &stack_b);
-	// printf("--------Stack A--------\n");
-	// print_list(stack_a);
+	// printf("--------Stack B Beffore--------\n");
+	// print_list(stack_b);
+
+	push_back_to_a(&stack_a, &stack_b);
 	// printf("--------Stack B--------\n");
 	// print_list(stack_b);
 	free_list(stack_a);
