@@ -1,6 +1,6 @@
 NAME = push_swap
 
-OBJS = ft_lstcat.o push_swap_util.o ft_lstsize.o ft_lstadd_back.o ft_lstnew.o push_swap.o instructions.o ft_lstadd_front.o
+OBJS = push_swap_util.o utilitis2.o utilitis.o push_swap.o instructions.o
 
 CFLAGS = -Wall -Wextra -Werror -g
 

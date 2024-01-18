@@ -6,106 +6,53 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 22:23:48 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/15 21:44:15 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/18 14:04:50 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void remove_node(t_list **head_ref, size_t key)
-{
-	t_list *temp = *head_ref;
-	t_list *prev = NULL;
-
-	if (temp->position == key)
-	{
-		*head_ref = temp->next;
-		free(temp);
-		return;
-	}
-
-	while (temp->position != key)
-	{
-		prev = temp;
-		temp = temp->next;
-	}
-	prev->next = temp->next;
-	free(temp);
-}
-
-int sorted(t_list *stack)
-{
-	t_list *current = stack;
-
-	while (current)
-	{
-		if (current->next && current->number > current->next->number)
-			return (0);
-		current = current->next;
-	}
-	return (1);
-}
-
-void stort_three_numbers(t_list **stack)
+void	stort_three_numbers(t_list **stack)
 {
 	if ((*stack)->number > (*stack)->next->number)
 	{
 		swap_stack(stack, "sa");
 		if (sorted(*stack))
-			return;
+			return ;
 	}
 	if ((*stack)->next->number > (*stack)->next->next->number)
 	{
 		reverse_rotate_stack(stack, "rra");
 		if (sorted(*stack))
-			return;
+			return ;
 	}
 	swap_stack(stack, "sa");
 }
 
-void sort_four_numbers(t_list **stack_a, t_list **stack_b)
+void	sort_four_numbers(t_list **stack_a, t_list **stack_b)
 {
-	t_list *current = *stack_a;
-
-	while (current)
+	while ((*stack_a) && (*stack_a)->position != 0)
 	{
-		if (current->position == 0)
-		{
-			ft_lstadd_back(stack_b, ft_lstnew(current->number, *stack_b));
-			remove_node(stack_a, current->position);
-			break;
-		}
-		current = current->next;
+		rotate_stack(stack_a, "ra");
 	}
+	push_stack(stack_a, stack_b, "pb");
 	stort_three_numbers(stack_a);
-	ft_lstadd_front(stack_a, *stack_b);
+	push_stack(stack_b, stack_a, "pa");
 }
 
-void sort_five_numbers(t_list **stack_a, t_list **stack_b)
+void	sort_five_numbers(t_list **stack_a, t_list **stack_b)
 {
-	t_list *current = *stack_a;
-
-	while (current)
+	while ((*stack_a) && (*stack_a)->position != 0)
 	{
-		if (current->position == 0)
-		{
-			ft_lstadd_back(stack_b, ft_lstnew(current->number, *stack_b));
-			remove_node(stack_a, current->position);
-			break;
-		}
-		current = current->next;
+		rotate_stack(stack_a, "ra");
 	}
-	current = *stack_a;
-	while (current)
+	push_stack(stack_a, stack_b, "pb");
+	while ((*stack_a) && (*stack_a)->position != 1)
 	{
-		if (current->position == 1)
-		{
-			ft_lstadd_back(stack_b, ft_lstnew(current->number, *stack_b));
-			remove_node(stack_a, current->position);
-			break;
-		}
-		current = current->next;
+		rotate_stack(stack_a, "ra");
 	}
+	push_stack(stack_a, stack_b, "pb");
 	stort_three_numbers(stack_a);
-	ft_lstcat(stack_a, stack_b);
+	push_stack(stack_b, stack_a, "pa");
+	push_stack(stack_b, stack_a, "pa");
 }
