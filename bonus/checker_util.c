@@ -1,31 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utilitis2.c                                        :+:      :+:    :+:   */
+/*   checker_util.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 14:03:18 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/18 14:04:01 by youchen          ###   ########.fr       */
+/*   Created: 2024/01/19 13:15:16 by youchen           #+#    #+#             */
+/*   Updated: 2024/01/19 14:26:11 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int	ft_lstsize(t_list *lst)
-{
-	t_list	*current_node;
-	int		i;
-
-	i = 0;
-	current_node = lst;
-	while (current_node)
-	{
-		i++;
-		current_node = current_node->next;
-	}
-	return (i);
-}
+#include "checker.h"
 
 void	free_list(t_list *list)
 {
@@ -53,16 +38,16 @@ int	sorted(t_list *stack)
 	return (1);
 }
 
-int	is_still_chunk_values(t_list *stack, size_t chunk_values)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
 
 	i = 0;
-	while (stack)
+	while (s1[i] && s2[i])
 	{
-		if (stack->position < chunk_values)
-			return (1);
-		stack = stack->next;
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
 	}
-	return (0);
+	return (1);
 }

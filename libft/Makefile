@@ -1,6 +1,6 @@
-NAME = push_swap
+NAME = ../libft.a
 
-OBJS = push_swap_util.o utilitis.o push_swap.o instructions.o pars.o
+OBJS = ft_atoi.o ft_lstadd_back.o ft_lstadd_front.o ft_lstnew.o ft_lstsize.o ft_split.o ft_error.o
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -9,9 +9,9 @@ CC = cc
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) libft.a -o $(NAME)
+	$(AR) -r $(NAME) $(OBJS)
 
-%.o: %.c push_swap.h
+%.o: %.c libft.h
 	$(CC) $(CFLAGS) -c $<
 
 clean:

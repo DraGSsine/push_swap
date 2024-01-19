@@ -6,80 +6,68 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:04:14 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/18 14:04:26 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/19 19:18:19 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *nptr)
+void	free_list(t_list *list)
 {
-	int		i;
-	int		sign;
-	int		result;
+	t_list	*tmp;
+
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp);
+	}
+}
+
+int	sorted(t_list *stack)
+{
+	t_list	*current;
+
+	current = stack;
+	while (current)
+	{
+		if (current->next && current->number > current->next->number)
+			return (0);
+		current = current->next;
+	}
+	return (1);
+}
+
+int	is_still_chunk_values(t_list *stack, size_t chunk_values)
+{
+	size_t	i;
 
 	i = 0;
-	sign = 1;
-	result = 0;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-		if (nptr[i++] == '-')
-			sign *= -1;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-		result = result * 10 + nptr[i++] - '0';
-	return (result * sign);
-}
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*current_node;
-
-	if (!lst)
-		return ;
-	if (!*lst)
+	while (stack)
 	{
-		*lst = new;
-		return ;
-	}
-	current_node = *lst;
-	while (current_node->next)
-	{
-		current_node = current_node->next;
-	}
-	current_node->next = new;
-}
-
-void	ft_lstadd_front(t_list **lst, t_list *new)
-{
-	if (!new || !lst)
-		return ;
-	new->next = *lst;
-	*lst = new;
-}
-
-void	insert_pos(t_list *stack, t_list *rtn)
-{
-	while (stack && rtn)
-	{
-		if (rtn->number > stack->number)
-			(rtn->position)++;
-		else
-			stack->position++;
+		if (stack->position < chunk_values)
+			return (1);
 		stack = stack->next;
 	}
+	return (0);
 }
 
-t_list	*ft_lstnew(int content, t_list *stack)
+void	check_dublicat(t_list **stack_a)
 {
-	t_list	*rtn;
+	t_list	*current;
+	t_list	*nested_current;
 
-	rtn = malloc(sizeof(t_list));
-	if (!rtn)
-		return (NULL);
-	rtn->number = content;
-	rtn->position = 0;
-	rtn->next = NULL;
-	insert_pos(stack, rtn);
-	return (rtn);
+	current = *stack_a;
+	while (current)
+	{
+		nested_current = current->next;
+		while (nested_current)
+		{
+			if (current->number == nested_current->number)
+				ft_error();
+			nested_current = nested_current->next;
+		}
+		current = current->next;
+	}
+	return ;
 }

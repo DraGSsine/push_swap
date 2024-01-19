@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 22:25:55 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/18 14:33:04 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/19 20:59:22 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
-
-// #define malloc(x) NULL
-
-typedef struct s_list
-{
-	int				number;
-	size_t			position;
-	struct s_list	*next;
-}	t_list;
+# include <unistd.h>
+# include "libft/libft.h"
 
 typedef struct s_node_found_at
 {
@@ -36,20 +29,24 @@ typedef struct s_stacks
 	size_t	list_size;
 	t_list	*stack_a;
 	t_list	*stack_b;
+	char	**numbers;
 }	t_stacks;
-int	is_still_chunk_values(t_list *stack, size_t chunk_values);
+
+void	check_dublicat(t_list **stack_a);
+void	push_back_to_a(t_list **stack_a, t_list **stack_b);
+void	sort_large_numbers(t_list **stack_a,
+			t_list **stack_b, size_t list_size);
+void	sort(t_list **stack_a, t_list **stack_b, size_t list_size);
+int		is_still_chunk_values(t_list *stack, size_t chunk_values);
 void	print_list(t_list *stack);
 void	free_list(t_list *list);
-void	sort_five_numbers(t_list **stack_a, t_list **stack_b);
 int		sorted(t_list *stack);
-t_list	*ft_lstnew(int content, t_list *stack);
-int		ft_lstsize(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
+void	sort_five_numbers(t_list **stack_a, t_list **stack_b);
 void	swap_stack(t_list **stack, char *instraction);
 void	push_stack(t_list **from, t_list **to, char *instraction);
-void	ft_lstadd_front(t_list **lst, t_list *new);
 void	rotate_stack(t_list **stack, char *instraction);
 void	reverse_rotate_stack(t_list **stack, char *instraction);
 void	stort_three_numbers(t_list **stack);
 void	sort_four_numbers(t_list **stack_a, t_list **stack_b);
+char	**parse(int ac, char **av);
 #endif

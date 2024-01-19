@@ -6,19 +6,11 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:10:54 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/18 14:33:26 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/19 19:21:45 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print_list(t_list *stack)
-{
-	if (!stack)
-		return ;
-	printf("%i (%zu)\n",stack->number, stack->position);
-	print_list(stack->next);
-}
 
 void	take_node_to_toop(t_list **stack_b, t_node_found_at node)
 {
@@ -95,66 +87,25 @@ void	push_back_to_a(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-void	sort_large_numbers(t_list **stack_a, t_list **stack_b, size_t list_size)
-{
-	size_t	chunk;
-	size_t	div;
-
-	div = 5;
-	if (list_size > 200)
-		div = 10;
-	chunk = list_size / div;
-	while ((*stack_a))
-	{
-		while ((*stack_a)->position >= chunk)
-			rotate_stack(stack_a, "ra");
-		while ((*stack_a) && (*stack_a)->position < chunk)
-		{
-			if ((*stack_a)->position < chunk - ((list_size / div) / 2))
-				push_stack(stack_a, stack_b, "pb");
-			else
-			{
-				push_stack(stack_a, stack_b, "pb");
-				rotate_stack(stack_b, "rb");
-			}
-		}
-		if (!is_still_chunk_values(*stack_a, chunk))
-			chunk += (list_size / div);
-	}
-}
-// char **pars(int ac, char **av)
-// {
-// 	if (ac  < 3)
-// 		exit(1);
-
-// }
-
 int	main(int argc, char **argv)
 {
-	int			i;
-	t_stacks	stacks;
-	char		**numbers;
+	int		i;
+	size_t	list_size;
+	t_list	*stack_a;
+	t_list	*stack_b;
+	char	**numbers;
 
-	i = 1;
-	numbers = pars(argc, argv);
-	(void)argc;
-	while (argv[i])
-		ft_lstadd_back(&stacks.stack_a, ft_lstnew(atoi(numbers[i++]), stacks.stack_a));
-	stacks.list_size = ft_lstsize(stacks.stack_a);
-	if (sorted(stacks.stack_a))
+	i = 0;
+	numbers = parse(argc, argv);
+	if (!numbers)
 		return (1);
-	if (stacks.list_size == 2)
-		swap_stack(&stacks.stack_a, "sa");
-	else if (stacks.list_size == 3)
-		stort_three_numbers(&stacks.stack_a);
-	else if (stacks.list_size == 4)
-		sort_four_numbers(&stacks.stack_a, &stacks.stack_b);
-	else if (stacks.list_size == 5)
-		sort_five_numbers(&stacks.stack_a, &stacks.stack_b);
-	else
-	{
-		sort_large_numbers(&stacks.stack_a, &stacks.stack_b, stacks.list_size);
-		push_back_to_a(&stacks.stack_a, &stacks.stack_b);
-	}
-	return (free_list(stacks.stack_a), free_list(stacks.stack_b), 0);
+	while (numbers[i])
+		ft_lstadd_back(&stack_a,
+			ft_lstnew(ft_atoi(numbers[i++]), stack_a));
+	check_dublicat(&stack_a);
+	list_size = ft_lstsize(stack_a);
+	if (sorted(stack_a))
+		return (1);
+	sort(&stack_a, &stack_b, list_size);
+	return (free_list(stack_a), free_list(stack_b), 0);
 }
