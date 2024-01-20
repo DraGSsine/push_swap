@@ -4,7 +4,7 @@ OBJS = push_swap_util.o utilitis.o push_swap.o instructions.o pars.o
 
 CFLAGS = -Wall -Wextra -Werror
 
-CC = cc
+CC = cc -g
 
 all: $(NAME)
 

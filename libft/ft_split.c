@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:47:59 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/19 12:15:08 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/20 09:02:33 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static size_t	count_words(const char *str, char sp)
 		if (*str)
 			str++;
 	}
+	if (ft_strlen(str) == 1)
+		nb_strings = 1;
 	return (nb_strings);
 }
 

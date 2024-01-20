@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:04:14 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/19 19:18:19 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/20 08:28:51 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ void	free_list(t_list *list)
 		list = list->next;
 		free(tmp);
 	}
+}
+
+void	ft_free(char **s)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
+		free(s[i++]);
+	free(s);
 }
 
 int	sorted(t_list *stack)

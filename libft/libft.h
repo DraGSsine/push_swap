@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:45:25 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/19 21:01:00 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/20 09:03:48 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+
 typedef struct s_list
 {
 	int				number;
@@ -30,4 +31,5 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(int content, t_list *stack);
 int		ft_lstsize(t_list *lst);
 char	**ft_split(const char *s, char c);
+int		ft_strlen(const char *s);
 #endif

@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:10:54 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/19 19:21:45 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/20 11:45:27 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	main(int argc, char **argv)
 	while (numbers[i])
 		ft_lstadd_back(&stack_a,
 			ft_lstnew(ft_atoi(numbers[i++]), stack_a));
+	ft_free(numbers);
 	check_dublicat(&stack_a);
 	list_size = ft_lstsize(stack_a);
 	if (sorted(stack_a))

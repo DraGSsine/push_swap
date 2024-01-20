@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 22:25:55 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/19 20:59:22 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/20 08:29:05 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_stacks
 	char	**numbers;
 }	t_stacks;
 
+void	ft_free(char **s);
 void	check_dublicat(t_list **stack_a);
 void	push_back_to_a(t_list **stack_a, t_list **stack_b);
 void	sort_large_numbers(t_list **stack_a,
