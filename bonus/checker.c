@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:11:19 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/21 10:08:52 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/21 16:42:51 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 void	ifaat(t_list **stack_a, t_list **stack_b, char *instraction)
 {
-	if (ft_strcmp(instraction, "sa"))
+	if (ft_strcmp(instraction, "sa\n"))
 		swap_stack(stack_a);
-	else if (ft_strcmp(instraction, "sb"))
+	else if (ft_strcmp(instraction, "sb\n"))
 		swap_stack(stack_b);
-	else if (ft_strcmp(instraction, "pa"))
+	else if (ft_strcmp(instraction, "pa\n"))
 		push_stack(stack_b, stack_a);
-	else if (ft_strcmp(instraction, "pb"))
+	else if (ft_strcmp(instraction, "pb\n"))
 		push_stack(stack_a, stack_b);
-	else if (ft_strcmp(instraction, "ra"))
+	else if (ft_strcmp(instraction, "ra\n"))
 		rotate_stack(stack_a);
-	else if (ft_strcmp(instraction, "rb"))
+	else if (ft_strcmp(instraction, "rb\n"))
 		rotate_stack(stack_b);
-	else if (ft_strcmp(instraction, "rra"))
+	else if (ft_strcmp(instraction, "rra\n"))
 		reverse_rotate_stack(stack_a);
-	else if (ft_strcmp(instraction, "rrb"))
+	else if (ft_strcmp(instraction, "rrb\n"))
 		reverse_rotate_stack(stack_b);
-	else if (ft_strcmp(instraction, "ss"))
+	else if (ft_strcmp(instraction, "ss\n"))
 		swap_tow(stack_a, stack_b);
-	else if (ft_strcmp(instraction, "rr"))
+	else if (ft_strcmp(instraction, "rr\n"))
 		rotate_tow(stack_a, stack_b);
-	else if (ft_strcmp(instraction, "rrr"))
+	else if (ft_strcmp(instraction, "rrr\n"))
 		reverse_rotate_tow(stack_a, stack_b);
 	else
 		ft_error();
@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 		return (write(1, "OK", 2), 0);
 	check_dublicat(&stack_a);
 	read_instractions(&stack_a, &stack_b);
-	if (sorted(stack_a))
+	if (sorted(stack_a) && !(stack_b))
 		write(1, "OK", 2);
 	else
 		write(1, "KO", 2);

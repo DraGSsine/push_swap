@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:34:15 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/21 08:11:38 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/21 22:04:30 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**parse(int ac, char **av)
 	i = 1;
 	nums_as_strings = NULL;
 	if (ac == 1)
-		exit(1);
+		exit(0);
 	while (av[i])
 	{
 		if (ft_strlen(av[i]) == 0)

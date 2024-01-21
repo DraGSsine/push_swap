@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:34:15 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/19 21:02:47 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/21 21:07:32 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ char	**parse(int ac, char **av)
 	{
 		nums = ft_split(av[1], ' ');
 		while (nums[++j])
-			if (!(ft_atoi(nums[j]) >= INT_MIN && ft_atoi(nums[j]) <= INT_MAX))
-				ft_error();
+			ft_atoi(nums[j]);
 	}
 	else
 	{
 		while (++i < ac)
-			if (!(ft_atoi(av[i]) >= INT_MIN && ft_atoi(av[i]) <= INT_MAX))
-				ft_error();
+			ft_atoi(av[i]);
 		nums = av + 1;
 	}
 	return (nums);

@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:15:16 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/21 10:00:24 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/21 16:41:19 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 	i = 0;
 	x = -1;
+	if (ft_strlen(s1) != ft_strlen(s2))
+		return (0);
 	while (s1[++x])
 		if (s1[x] == 9 || (s1[x] > 10 && s1[x] <= 32))
 			ft_error();

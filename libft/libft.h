@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:45:25 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/21 07:43:18 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/21 22:16:22 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-
+# define malloc(x) NULL
 typedef struct s_list
 {
 	int				number;
