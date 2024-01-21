@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:11:19 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/20 10:14:09 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/21 10:08:52 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,6 @@ void	read_instractions(t_list **stack_a, t_list **stack_b)
 	free(instraction);
 }
 
-void	print_list(t_list *stack)
-{
-	if (!stack)
-		return ;
-	printf("%i\n", stack->number);
-	print_list(stack->next);
-}
-
 int	main(int argc, char **argv)
 {
 	int		i;
@@ -81,7 +73,8 @@ int	main(int argc, char **argv)
 			ft_lstnew(ft_atoi(numbers[i++]), stack_a));
 	list_size = ft_lstsize(stack_a);
 	if (sorted(stack_a))
-		return (1);
+		return (write(1, "OK", 2), 0);
+	check_dublicat(&stack_a);
 	read_instractions(&stack_a, &stack_b);
 	if (sorted(stack_a))
 		write(1, "OK", 2);
