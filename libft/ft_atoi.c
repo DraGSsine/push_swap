@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:54:49 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/20 09:58:03 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/21 08:04:17 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int	ft_str_is_numeric(const char *s)
 
 int	ft_atoi(const char *nptr)
 {
-	int		i;
-	int		sign;
-	int		result;
+	int			i;
+	long int	sign;
+	long int	result;
 
 	i = 0;
 	sign = 1;
@@ -81,5 +81,8 @@ int	ft_atoi(const char *nptr)
 			sign *= -1;
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 		result = result * 10 + nptr[i++] - '0';
-	return (result * sign);
+	result *= sign;
+	if (result < INT_MIN || result > INT_MAX)
+		ft_error();
+	return (result);
 }

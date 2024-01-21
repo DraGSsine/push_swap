@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:34:15 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/20 11:35:42 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/21 08:11:38 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char	**parse(int ac, char **av)
 	{
 		if (ft_strlen(av[i]) == 0)
 			ft_error();
-		ft_atoi(av[i]);
 		nums_as_strings = ft_strjoin(nums_as_strings, " ");
 		nums_as_strings = ft_strjoin(nums_as_strings, av[i++]);
 	}
