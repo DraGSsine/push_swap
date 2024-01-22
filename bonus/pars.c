@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:34:15 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/21 21:07:32 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/22 08:12:16 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**parse(int ac, char **av)
 	j = -1;
 	i = 0;
 	if (ac == 1)
-		exit(1);
+		exit(0);
 	else if (ac == 2)
 	{
 		nums = ft_split(av[1], ' ');

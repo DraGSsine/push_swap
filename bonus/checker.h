@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:40:41 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/21 22:39:00 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/22 08:21:10 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <limits.h>
 # include <unistd.h>
 # include "../libft/libft.h"
-// # include <stdio.h>
 
 void	check_dublicat(t_list **stack_a);
 char	*get_next_line(int fd);
