@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 22:23:48 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/21 10:07:24 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/22 07:40:12 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,10 @@ void	sort_five_numbers(t_list **stack_a, t_list **stack_b)
 
 	zero = found_node_at(stack_a, 0);
 	one = found_node_at(stack_a, 1);
-
 	take_node_to_toop(stack_a, zero, "rra", "ra");
 	push_stack(stack_a, stack_b, "pb");
-
 	take_node_to_toop(stack_a, one, "rra", "ra");
 	push_stack(stack_a, stack_b, "pb");
-
 	stort_three_numbers(stack_a);
 	push_stack(stack_b, stack_a, "pa");
 	push_stack(stack_b, stack_a, "pa");

@@ -9,7 +9,7 @@ OBJS = $(SRC:.c=.o)
 OBJS_BONUS = $(BONUS_SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
-CC = cc -g
+CC = cc
 
 all: $(NAME)
 
@@ -22,10 +22,10 @@ $(BONUS_NAME): $(OBJS_BONUS)
 	$(CC) $(OBJS_BONUS) libft.a -o $(BONUS_NAME)
 
 %.o: %.c push_swap.h
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
 %.o: $(BONUS_SRC_DIR)/%.c $(BONUS_SRC_DIR)/checker.h
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS) $(OBJS_BONUS)

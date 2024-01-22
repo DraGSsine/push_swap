@@ -6,11 +6,21 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 15:21:09 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/18 14:20:54 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/22 07:44:54 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	put_str(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		write(1, &s[i++], 1);
+	write(1, "\n", 1);
+}
 
 void	swap_stack(t_list **stack, char *instraction)
 {
@@ -24,7 +34,7 @@ void	swap_stack(t_list **stack, char *instraction)
 	temp1->next = temp2->next;
 	temp2->next = temp1;
 	*stack = temp2;
-	printf("%s\n", instraction);
+	put_str(instraction);
 }
 
 void	push_stack(t_list **from, t_list **to, char *instraction)
@@ -37,7 +47,7 @@ void	push_stack(t_list **from, t_list **to, char *instraction)
 	*from = (*from)->next;
 	temp->next = *to;
 	*to = temp;
-	printf("%s\n", instraction);
+	put_str(instraction);
 }
 
 void	rotate_stack(t_list **stack, char *instraction)
@@ -50,7 +60,7 @@ void	rotate_stack(t_list **stack, char *instraction)
 	*stack = (*stack)->next;
 	temp->next = NULL;
 	ft_lstadd_back(stack, temp);
-	printf("%s\n", instraction);
+	put_str(instraction);
 }
 
 void	reverse_rotate_stack(t_list **stack, char *instraction)
@@ -69,5 +79,5 @@ void	reverse_rotate_stack(t_list **stack, char *instraction)
 	}
 	previous_element->next = NULL;
 	ft_lstadd_front(stack, last_element);
-	printf("%s\n", instraction);
+	put_str(instraction);
 }
