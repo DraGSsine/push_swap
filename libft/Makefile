@@ -1,6 +1,6 @@
 NAME = ../libft.a
 
-OBJS = ft_strlen.o ft_atoi.o ft_lstadd_back.o ft_lstadd_front.o ft_lstnew.o ft_lstsize.o ft_split.o ft_error.o
+OBJS = ft_strjoin.o ft_strlen.o ft_atoi.o ft_lstadd_back.o ft_lstadd_front.o ft_lstnew.o ft_lstsize.o ft_split.o ft_error.o
 
 CFLAGS = -Wall -Wextra -Werror
 

@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:45:25 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/21 22:33:50 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/25 14:06:13 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+char	*ft_strjoin(char *s1, char *buff);
 void	ft_error(void);
 int		ft_atoi(const char *nptr);
 int		ft_lstsize(t_list *lst);

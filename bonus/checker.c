@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:11:19 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/21 22:42:18 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/25 14:32:07 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	read_instractions(t_list **stack_a, t_list **stack_b)
 {
 	char	*instraction;
 
-	instraction = get_next_line(1);
+	instraction = get_next_line(0);
 	while (instraction)
 	{
 		ifaat(stack_a, stack_b, instraction);
 		free(instraction);
-		instraction = get_next_line(1);
+		instraction = get_next_line(0);
 	}
 	free(instraction);
 }

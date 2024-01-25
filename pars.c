@@ -6,38 +6,85 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:34:15 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/22 08:00:18 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/25 14:42:14 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*ft_strjoin(char *s1, char *buff)
+int	symbol_position(char *s)
 {
-	char	*ptr_str;
-	int		i;
-	int		x;
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '-' || s[i] == '+')
+		{
+			if ((s[i - 1] && s[i - 1] != ' ')
+				|| !(s[i + 1] >= '0' && s[i + 1] <= '9'))
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	count_smbols(char *s)
+{
+	int	i;
+	int	plus;
+	int	minus;
 
 	i = -1;
-	x = 0;
-	if (!s1)
+	plus = 0;
+	minus = 0;
+	while (s[++i])
 	{
-		s1 = malloc(1);
-		if (!s1)
-			return (NULL);
-		s1[0] = '\0';
+		if (s[i] == '+')
+			plus++;
+		else if (s[i] == '-')
+			minus++;
 	}
-	if (!buff)
-		return (NULL);
-	ptr_str = malloc(ft_strlen(s1) + ft_strlen(buff) + 1);
-	if (!ptr_str)
-		return (free(s1), NULL);
-	while (++i < ft_strlen(s1))
-		ptr_str[i] = s1[i];
-	while (x < ft_strlen(buff))
-		ptr_str[i++] = buff[x++];
-	ptr_str[i] = '\0';
-	return (free(s1), ptr_str);
+	if (plus == 1 || minus == 1)
+		if (symbol_position(s))
+			ft_error();
+	if (minus > 1 || plus > 1)
+		return (1);
+	return (0);
+}
+
+int	no_int(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if ((s[i] >= '0' && s[i] <= '9'))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_str_is_numeric(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (count_smbols(s) || !no_int(s))
+		ft_error();
+	while (s[i])
+	{
+		if ((s[i] >= '0' && s[i] <= '9')
+			|| (s[i] == '+' || s[i] == '-'
+				|| s[i] == 32 || (s[i] >= 9 && s[i] <= 13)))
+			i++;
+		else
+			return (0);
+	}
+	return (1);
 }
 
 char	**parse(int ac, char **av)
@@ -54,9 +101,7 @@ char	**parse(int ac, char **av)
 		exit(0);
 	while (av[i])
 	{
-		if (ft_strlen(av[1]) == 0)
-			exit(0);
-		if (ft_strlen(av[i]) == 0)
+		if (!ft_str_is_numeric(av[i]) || *av[i] == '\0')
 			ft_error();
 		nums_as_strings = ft_strjoin(nums_as_strings, " ");
 		nums_as_strings = ft_strjoin(nums_as_strings, av[i++]);
