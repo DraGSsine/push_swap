@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:11:19 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/25 14:32:07 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/25 17:12:43 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ int	main(int argc, char **argv)
 		ft_lstadd_back(&stack_a,
 			ft_lstnew(ft_atoi(numbers[i++]), stack_a));
 	list_size = ft_lstsize(stack_a);
-	if (sorted(stack_a))
-		return (write(1, "OK", 2), 0);
 	check_dublicat(&stack_a);
 	read_instractions(&stack_a, &stack_b);
 	if (sorted(stack_a) && !(stack_b))
