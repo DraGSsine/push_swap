@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:34:15 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/25 14:42:14 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/26 08:31:34 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,9 @@ int	count_smbols(char *s)
 		else if (s[i] == '-')
 			minus++;
 	}
-	if (plus == 1 || minus == 1)
+	if (minus > 0 || plus > 0)
 		if (symbol_position(s))
 			ft_error();
-	if (minus > 1 || plus > 1)
-		return (1);
 	return (0);
 }
 
