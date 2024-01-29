@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 22:23:48 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/22 07:40:12 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/29 17:48:21 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	sort_large_numbers(t_list **stack_a, t_list **stack_b, size_t list_size)
 
 	div = 5;
 	if (list_size > 200)
-		div = 10;
+		div = 20;
 	chunk = list_size / div;
 	while ((*stack_a))
 	{

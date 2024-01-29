@@ -6,11 +6,11 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:39:23 by youchen           #+#    #+#             */
-/*   Updated: 2023/12/23 09:59:27 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/29 12:08:21 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_left_string(char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:26:19 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/25 14:04:55 by youchen          ###   ########.fr       */
+/*   Updated: 2024/01/29 12:06:01 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *s1)
 {
