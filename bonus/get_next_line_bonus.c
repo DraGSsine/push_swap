@@ -44,7 +44,7 @@ char	*read_and_process_buffer(int fd, char *left)
 	while (r > 0)
 	{
 		buffer[r] = '\0';
-		left = ft_strjoin(left, buffer);
+		left = ft_strjoin_bonus(left, buffer);
 		if (!left)
 			return (free(buffer), NULL);
 		if (ft_strchr(buffer, '\n'))
@@ -81,7 +81,7 @@ char	*get_next_line(int fd)
 	}
 	if (*left)
 	{
-		line = ft_strjoin(line, left);
+		line = ft_strjoin_bonus(line, left);
 		return (free(left), left = NULL, line);
 		return (left);
 	}

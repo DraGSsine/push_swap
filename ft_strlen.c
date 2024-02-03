@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus_bonus.h                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 21:54:56 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/29 12:08:38 by youchen          ###   ########.fr       */
+/*   Created: 2024/01/20 09:02:45 by youchen           #+#    #+#             */
+/*   Updated: 2024/01/20 09:43:49 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "push_swap.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
+int	ft_strlen(const char *s)
+{
+	int	i;
 
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <limits.h>
-
-char	*ft_strjoin_bonus(char *s1, char *buff);
-char	*ft_substr(char *s, unsigned int start, size_t len);
-size_t	ft_strlen(char *s1);
-char	*get_next_line(int fd);
-int		ft_strchr(char *s, int c);
-#endif
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+		i++;
+	return (i);
+}

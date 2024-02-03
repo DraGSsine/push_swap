@@ -24,18 +24,6 @@ void	free_list(t_list *list)
 	}
 }
 
-void	ft_free(char **s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
-		free(s[i++]);
-	free(s);
-}
-
 int	sorted(t_list *stack)
 {
 	t_list	*current;
@@ -82,4 +70,16 @@ void	check_dublicat(t_list **stack_a)
 		current = current->next;
 	}
 	return ;
+}
+
+void	take_chunk_to_top(t_list **stack_a, size_t chunk)
+{
+	t_list		*current;
+	t_node_at	node;
+
+	current = *stack_a;
+	while (current && current->position >= chunk)
+		current = current->next;
+	node = found_node_at(stack_a, current->position);
+	take_node_to_toop(stack_a, node, "rra", "ra");
 }

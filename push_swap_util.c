@@ -70,12 +70,11 @@ void	sort_large_numbers(t_list **stack_a, t_list **stack_b, size_t list_size)
 
 	div = 5;
 	if (list_size > 200)
-		div = 20;
+		div = 8;
 	chunk = list_size / div;
 	while ((*stack_a))
 	{
-		while ((*stack_a)->position >= chunk)
-			rotate_stack(stack_a, "ra");
+		take_chunk_to_top(stack_a, chunk);
 		while ((*stack_a) && (*stack_a)->position < chunk)
 		{
 			if ((*stack_a)->position < chunk - ((list_size / div) / 2))

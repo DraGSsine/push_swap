@@ -24,6 +24,15 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+typedef struct s_data
+{
+	char	*ptr_str;
+	size_t	i;
+	size_t	x;
+	size_t	s1_len;
+	size_t	s2_len;
+}	t_data;
+
 char	*ft_strjoin(char *s1, char *buff);
 void	ft_error(void);
 int		ft_atoi(const char *nptr);

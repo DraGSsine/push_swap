@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 09:02:45 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/20 09:43:49 by youchen          ###   ########.fr       */
+/*   Created: 2024/01/19 11:44:58 by youchen           #+#    #+#             */
+/*   Updated: 2024/01/19 11:44:59 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_strlen(const char *s)
+int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	t_list	*current_node;
+	int		i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
+	current_node = lst;
+	while (current_node)
+	{
 		i++;
+		current_node = current_node->next;
+	}
 	return (i);
 }

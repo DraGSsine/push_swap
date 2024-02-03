@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	i = 0;
-	numbers = parse(argc, argv);
+	numbers = pars(argc, argv);
 	if (!numbers)
 		return (1);
 	while (numbers[i])

@@ -49,11 +49,11 @@ int	check(size_t second_large, size_t large, size_t size_of_list)
 	if (second_large <= (size_of_list / 2))
 		number_of_instraction_2 = second_large;
 	else
-		number_of_instraction_2 = size_of_list - second_large + 1;
+		number_of_instraction_2 = size_of_list - second_large;
 	if (large <= (size_of_list / 2))
 		number_of_instraction_1 = large;
 	else
-		number_of_instraction_1 = size_of_list - large + 1;
+		number_of_instraction_1 = size_of_list - large;
 	if (number_of_instraction_1 > number_of_instraction_2)
 		return (1);
 	return (0);
@@ -96,7 +96,7 @@ int	main(int argc, char **argv)
 	char	**numbers;
 
 	i = 0;
-	numbers = parse(argc, argv);
+	numbers = pars(argc, argv);
 	if (!numbers)
 		return (0);
 	while (numbers[i])

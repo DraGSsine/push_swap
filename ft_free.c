@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   utilitis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 11:44:58 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/19 11:44:59 by youchen          ###   ########.fr       */
+/*   Created: 2024/01/18 14:04:14 by youchen           #+#    #+#             */
+/*   Updated: 2024/01/20 08:28:51 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "push_swap.h"
 
-#include "libft.h"
-
-int	ft_lstsize(t_list *lst)
+void	ft_free(char **s)
 {
-	t_list	*current_node;
-	int		i;
+	int	i;
 
 	i = 0;
-	current_node = lst;
-	while (current_node)
-	{
-		i++;
-		current_node = current_node->next;
-	}
-	return (i);
+	if (!s)
+		return ;
+	while (s[i])
+		free(s[i++]);
+	free(s);
 }

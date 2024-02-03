@@ -13,12 +13,39 @@
 #ifndef CHECKER_BONUS_H
 # define CHECKER_BONUS_H
 # include <limits.h>
+# include <stdlib.h>
 # include <unistd.h>
-# include "../libft/libft.h"
 
+typedef struct s_list
+{
+	int				number;
+	size_t			position;
+	struct s_list	*next;
+}	t_list;
+
+typedef struct s_data
+{
+	char	*ptr_str;
+	size_t	i;
+	size_t	x;
+	size_t	s1_len;
+	size_t	s2_len;
+}	t_data;
+
+char	*ft_strjoin_bonus(char *s1, char *buff);
+char	*ft_strjoin(char *s1, char *buff);
+void	ft_error(void);
+int		ft_atoi(const char *nptr);
+int		ft_lstsize(t_list *lst);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+t_list	*ft_lstnew(int content, t_list *stack);
+int		ft_lstsize(t_list *lst);
+char	**ft_split(const char *s, char c);
+int		ft_strlen(const char *s);
 void	check_dublicat(t_list **stack_a);
 char	*get_next_line(int fd);
-char	**parse(int ac, char **av);
+char	**pars(int ac, char **av);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(int content, t_list *stack);
 int		ft_atoi(const char *nptr);

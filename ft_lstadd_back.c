@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 20:44:23 by youchen           #+#    #+#             */
-/*   Updated: 2024/01/19 20:46:38 by youchen          ###   ########.fr       */
+/*   Created: 2024/01/19 11:54:08 by youchen           #+#    #+#             */
+/*   Updated: 2024/01/19 11:54:20 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_error(void)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	write(2, "Error", 5);
-	write(2, "\n", 1);
-	exit(1);
+	t_list	*current_node;
+
+	if (!lst)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	current_node = *lst;
+	while (current_node->next)
+	{
+		current_node = current_node->next;
+	}
+	current_node->next = new;
 }

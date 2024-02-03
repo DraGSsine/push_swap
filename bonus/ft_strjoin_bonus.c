@@ -10,16 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "checker_bonus.h"
 
-char	*ft_strjoin(char *s1, char *buff)
+char	*ft_strjoin_bonus(char *s1, char *buff)
 {
-	char	*ptr_str;
-	size_t	i;
-	size_t	x;
+	t_data	data;
 
-	i = -1;
-	x = 0;
+	data.i = -1;
+	data.x = 0;
 	if (!s1)
 	{
 		s1 = malloc(1);
@@ -29,13 +27,15 @@ char	*ft_strjoin(char *s1, char *buff)
 	}
 	if (!buff)
 		return (NULL);
-	ptr_str = malloc(ft_strlen(s1) + ft_strlen(buff) + 1);
-	if (!ptr_str)
+	data.s1_len = ft_strlen(s1);
+	data.s2_len = ft_strlen(buff);
+	data.ptr_str = malloc(data.s1_len + data.s2_len + 1);
+	if (!data.ptr_str)
 		return (free(s1), NULL);
-	while (++i < (size_t)ft_strlen(s1))
-		ptr_str[i] = s1[i];
-	while (x < (size_t)ft_strlen(buff))
-		ptr_str[i++] = buff[x++];
-	ptr_str[i] = '\0';
-	return (free(s1), ptr_str);
+	while (++data.i < data.s1_len)
+		data.ptr_str[data.i] = s1[data.i];
+	while (data.x < data.s2_len)
+		data.ptr_str[data.i++] = buff[data.x++];
+	data.ptr_str[data.i] = '\0';
+	return (free(s1), data.ptr_str);
 }

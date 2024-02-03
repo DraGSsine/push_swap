@@ -12,20 +12,6 @@
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(char *s1)
-{
-	int	i;
-
-	i = 0;
-	if (s1 == NULL)
-		return (0);
-	while (s1[i])
-	{
-		i++;
-	}
-	return (i);
-}
-
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	s_len;

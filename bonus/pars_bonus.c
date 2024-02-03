@@ -85,7 +85,7 @@ int	ft_str_is_numeric(char *s)
 	return (1);
 }
 
-char	**parse(int ac, char **av)
+char	**pars(int ac, char **av)
 {
 	int		i;
 	int		j;
@@ -101,7 +101,6 @@ char	**parse(int ac, char **av)
 	{
 		if (!ft_str_is_numeric(av[i]) || *av[i] == '\0')
 			ft_error();
-		nums_as_strings = ft_strjoin(nums_as_strings, " ");
 		nums_as_strings = ft_strjoin(nums_as_strings, av[i++]);
 	}
 	nums = ft_split(nums_as_strings, ' ');
